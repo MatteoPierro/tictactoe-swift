@@ -1,7 +1,7 @@
 class Game {
     
     private var occupatedPositions = Set<Position>()
-    private var currentPlayer: Player? = nil
+    private var currentPlayer: Player! = nil
     
     func play(_ position: Position) -> Status {
         if occupatedPositions.contains(position) {
@@ -14,10 +14,8 @@ class Game {
     }
     
     func nextPlayer() -> Player {
-        if currentPlayer?.hashValue == Player.x.hashValue {
-            return Player.o
-        }
-        
-        return Player.x
+        return currentPlayer == Player.x
+            ? Player.o
+            : Player.x
     }
 }
