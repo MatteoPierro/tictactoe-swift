@@ -1,16 +1,18 @@
 import XCTest
 
 class GameTest: XCTestCase {
+    
+    var game: Game!
+    
+    override func setUp() {
+        game = Game()
+    }
 
     func testXAlwaysGoesFirst() {
-        let game = Game()
-        
         XCTAssertEqual(game.nextPlayer(), Player.x)
     }
     
     func testPlayersCannotPlayOnAPlayedPosition() {
-        let game = Game()
-        
         game.play(Position.topLeft)
         let status = game.play(Position.topLeft)
         
@@ -18,8 +20,6 @@ class GameTest: XCTestCase {
     }
     
     func testPlayersCanTakeANotPlayedPosition() {
-        let game = Game()
-        
         game.play(Position.topLeft)
         let status = game.play(Position.topMiddle)
         
