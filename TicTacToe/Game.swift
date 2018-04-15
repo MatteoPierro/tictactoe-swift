@@ -44,7 +44,8 @@ class Game {
         let winningSequences: Set<Set> = [
             [Position.topLeft, Position.topMiddle, Position.topRight],
             [Position.centerLeft, Position.centerMiddle, Position.centerRight],
-            [Position.bottomLeft, Position.bottomMiddle, Position.bottomRight]
+            [Position.bottomLeft, Position.bottomMiddle, Position.bottomRight],
+            [Position.topLeft, Position.centerLeft, Position.bottomLeft]
         ]
         
         let occupiedPositions = occupiedPositionsBy(player!)
