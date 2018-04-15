@@ -156,4 +156,31 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(state, Status.oWon)
     }
+    
+    //    X'
+    //    X' O'
+    //    X' O'
+    func testXWinsTakingAllTheMiddleColumn() {
+        game.play(Position.bottomMiddle)
+        game.play(Position.bottomRight)
+        game.play(Position.centerMiddle)
+        game.play(Position.centerRight)
+        let state = game.play(Position.topMiddle)
+        
+        XCTAssertEqual(state, Status.xWon)
+    }
+    
+    // X' O'
+    //    O' X'
+    //    O' X'
+    func testOWinsTakingAllTheMiddleColumn() {
+        game.play(Position.topLeft)
+        game.play(Position.bottomMiddle)
+        game.play(Position.bottomRight)
+        game.play(Position.centerMiddle)
+        game.play(Position.centerRight)
+        let state = game.play(Position.topMiddle)
+        
+        XCTAssertEqual(state, Status.oWon)
+    }
 }

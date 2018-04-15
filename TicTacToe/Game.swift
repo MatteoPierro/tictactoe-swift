@@ -45,7 +45,8 @@ class Game {
             [Position.topLeft, Position.topMiddle, Position.topRight],
             [Position.centerLeft, Position.centerMiddle, Position.centerRight],
             [Position.bottomLeft, Position.bottomMiddle, Position.bottomRight],
-            [Position.topLeft, Position.centerLeft, Position.bottomLeft]
+            [Position.topLeft, Position.centerLeft, Position.bottomLeft],
+            [Position.topMiddle, Position.centerMiddle, Position.bottomMiddle]
         ]
         
         let occupiedPositions = occupiedPositionsBy(player!)
