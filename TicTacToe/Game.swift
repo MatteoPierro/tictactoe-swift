@@ -43,7 +43,8 @@ class Game {
     private func hasWon(_ player: Player!) -> Bool {
         let winningSequences: Set<Set> = [
             [Position.topLeft, Position.topMiddle, Position.topRight],
-            [Position.centerLeft, Position.centerMiddle, Position.centerRight]
+            [Position.centerLeft, Position.centerMiddle, Position.centerRight],
+            [Position.bottomLeft, Position.bottomMiddle, Position.bottomRight]
         ]
         
         let occupiedPositions = occupiedPositionsBy(player!)
