@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		73A9CF1D2083539E0052E3D3 /* GameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF1C2083539E0052E3D3 /* GameTest.swift */; };
+		73A9CF1F208354630052E3D3 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF1E208354630052E3D3 /* Game.swift */; };
+		73A9CF20208354630052E3D3 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF1E208354630052E3D3 /* Game.swift */; };
+		73A9CF22208354940052E3D3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF21208354940052E3D3 /* Player.swift */; };
+		73A9CF23208354940052E3D3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF21208354940052E3D3 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +31,8 @@
 		73A9CF14208353320052E3D3 /* TicTacToeTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73A9CF18208353320052E3D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73A9CF1C2083539E0052E3D3 /* GameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTest.swift; sourceTree = "<group>"; };
+		73A9CF1E208354630052E3D3 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		73A9CF21208354940052E3D3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,8 @@
 		73A9CF082083530A0052E3D3 /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				73A9CF1E208354630052E3D3 /* Game.swift */,
+				73A9CF21208354940052E3D3 /* Player.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -130,6 +138,7 @@
 				TargetAttributes = {
 					73A9CF052083530A0052E3D3 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 					73A9CF13208353320052E3D3 = {
 						CreatedOnToolsVersion = 9.3;
@@ -169,6 +178,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73A9CF22208354940052E3D3 /* Player.swift in Sources */,
+				73A9CF1F208354630052E3D3 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +188,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				73A9CF1D2083539E0052E3D3 /* GameTest.swift in Sources */,
+				73A9CF23208354940052E3D3 /* Player.swift in Sources */,
+				73A9CF20208354630052E3D3 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,8 +312,15 @@
 		73A9CF0E2083530A0052E3D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -308,7 +328,13 @@
 		73A9CF0F2083530A0052E3D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};

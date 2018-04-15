@@ -2,8 +2,10 @@ import XCTest
 
 class GameTest: XCTestCase {
 
-    func testExample() {
-
+    func testXAlwaysGoesFirst() {
+        let game = Game()
+        
+        XCTAssertEqual(game.nextPlayer(), Player.X)
     }
     
 }
