@@ -10,12 +10,19 @@ class Game {
         
         currentPlayer = nextPlayer()
         occupatedPositions.insert(position)
-        return Status.positionTaken
+        
+        return isDraw()
+            ? Status.draw
+            : Status.positionTaken
     }
     
     func nextPlayer() -> Player {
         return currentPlayer == Player.x
             ? Player.o
             : Player.x
+    }
+    
+    private func isDraw() -> Bool {
+        return occupatedPositions.count == 9;
     }
 }

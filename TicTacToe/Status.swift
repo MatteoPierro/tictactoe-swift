@@ -1,3 +1,3 @@
 enum Status {
-    case positionAlreadyPlayed, positionTaken
+    case positionAlreadyPlayed, positionTaken, draw
 }

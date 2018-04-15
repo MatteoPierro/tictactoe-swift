@@ -31,4 +31,21 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(game.nextPlayer(), Player.o)
     }
+    
+    // X' O' X'
+    // X' O' O'
+    // O' X' X'
+    func testTheGameIsADrawWhenAllNineSquaresAreFilledAndNeitherPlayerHasThreeInARow() {
+        game.play(Position.topLeft)
+        game.play(Position.topMiddle)
+        game.play(Position.topRight)
+        game.play(Position.centerMiddle)
+        game.play(Position.centerLeft)
+        game.play(Position.centerRight)
+        game.play(Position.bottomMiddle)
+        game.play(Position.bottomLeft)
+        let state = game.play(Position.bottomRight)
+        
+        XCTAssertEqual(state, Status.draw)
+    }
 }

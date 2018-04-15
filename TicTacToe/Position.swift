@@ -1,3 +1,5 @@
 enum Position {
-    case topLeft, topMiddle
+    case topLeft, topMiddle, topRight,
+         centerLeft, centerMiddle, centerRight,
+         bottomLeft, bottomMiddle, bottomRight
 }
