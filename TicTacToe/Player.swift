@@ -1,3 +1,3 @@
 enum Player {
-    case X
+    case x
 }

@@ -5,15 +5,15 @@ class GameTest: XCTestCase {
     func testXAlwaysGoesFirst() {
         let game = Game()
         
-        XCTAssertEqual(game.nextPlayer(), Player.X)
+        XCTAssertEqual(game.nextPlayer(), Player.x)
     }
     
     func testPlayersCannotPlayOnAPlayedPosition() {
         let game = Game()
         
-        game.play(Position.TOP_LEFT)
-        let status = game.play(Position.TOP_LEFT)
+        game.play(Position.topLeft)
+        let status = game.play(Position.topLeft)
         
-        XCTAssertEqual(status, Status.POSITION_ALREADY_PLAYED)
+        XCTAssertEqual(status, Status.positionAlreadyPlayed)
     }
 }
