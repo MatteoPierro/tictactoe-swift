@@ -46,13 +46,13 @@ class Game {
             [Position.centerLeft, Position.centerMiddle, Position.centerRight]
         ]
         
-        for winningSequence in winningSequences {
-            if winningSequence.isSubset(of: occupiedPositionsBy(player!)) {
-                return true
-            }
-        }
+        let occupiedPositions = occupiedPositionsBy(player!)
         
-        return false
+        return winningSequences.first(where: { isWinningSequence(occupiedPositions, winningSequence: $0) }) != nil
+    }
+
+    private func isWinningSequence(_ occupiedPositions: Set<Position>, winningSequence: Set<Position>) -> Bool {
+        return winningSequence.isSubset(of: occupiedPositions)
     }
 
     private func isDraw() -> Bool {
