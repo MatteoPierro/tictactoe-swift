@@ -49,10 +49,10 @@ class GameTest: XCTestCase {
         XCTAssertEqual(state, Status.draw)
     }
     
-    // X X X ---> win
-    // O
-    // O
-    func _testXWinsTakingAllTheTopRow() {
+    // X' X' X' ---> win
+    // O'
+    // O'
+    func testXWinsTakingAllTheTopRow() {
         game.play(Position.topLeft)
         game.play(Position.centerLeft)
         game.play(Position.topMiddle)

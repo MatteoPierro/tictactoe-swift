@@ -11,6 +11,12 @@ class Game {
         currentPlayer = nextPlayer()
         occupatedPositions[position] = currentPlayer
         
+        let winningSequence: Set = [Position.topLeft, Position.topMiddle, Position.topRight]
+        let positionsOccupatedByX = occupatedPositions.filter { $0.value == Player.x}.keys
+        if winningSequence.isSubset(of: positionsOccupatedByX) {
+            return Status.xWon
+        }
+
         return isDraw()
             ? Status.draw
             : Status.positionTaken
