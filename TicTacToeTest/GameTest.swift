@@ -25,4 +25,10 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(status, Status.positionTaken)
     }
+    
+    func testPlayersAlternatePlacingXandO() {
+        game.play(Position.topLeft)
+        
+        XCTAssertEqual(game.nextPlayer(), Player.o)
+    }
 }
