@@ -12,6 +12,10 @@
 		73A9CF20208354630052E3D3 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF1E208354630052E3D3 /* Game.swift */; };
 		73A9CF22208354940052E3D3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF21208354940052E3D3 /* Player.swift */; };
 		73A9CF23208354940052E3D3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF21208354940052E3D3 /* Player.swift */; };
+		73A9CF25208356C10052E3D3 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF24208356C10052E3D3 /* Position.swift */; };
+		73A9CF26208356C10052E3D3 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF24208356C10052E3D3 /* Position.swift */; };
+		73A9CF28208356CB0052E3D3 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF27208356CB0052E3D3 /* Status.swift */; };
+		73A9CF29208356CB0052E3D3 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9CF27208356CB0052E3D3 /* Status.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +37,8 @@
 		73A9CF1C2083539E0052E3D3 /* GameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTest.swift; sourceTree = "<group>"; };
 		73A9CF1E208354630052E3D3 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		73A9CF21208354940052E3D3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		73A9CF24208356C10052E3D3 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		73A9CF27208356CB0052E3D3 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,8 @@
 			children = (
 				73A9CF1E208354630052E3D3 /* Game.swift */,
 				73A9CF21208354940052E3D3 /* Player.swift */,
+				73A9CF24208356C10052E3D3 /* Position.swift */,
+				73A9CF27208356CB0052E3D3 /* Status.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -180,6 +188,8 @@
 			files = (
 				73A9CF22208354940052E3D3 /* Player.swift in Sources */,
 				73A9CF1F208354630052E3D3 /* Game.swift in Sources */,
+				73A9CF25208356C10052E3D3 /* Position.swift in Sources */,
+				73A9CF28208356CB0052E3D3 /* Status.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +198,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				73A9CF1D2083539E0052E3D3 /* GameTest.swift in Sources */,
+				73A9CF29208356CB0052E3D3 /* Status.swift in Sources */,
 				73A9CF23208354940052E3D3 /* Player.swift in Sources */,
+				73A9CF26208356C10052E3D3 /* Position.swift in Sources */,
 				73A9CF20208354630052E3D3 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
