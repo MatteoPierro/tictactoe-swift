@@ -9,7 +9,7 @@ class Game {
         }
         
         lastPlayer = nextPlayer()
-        occupiedPositions[position] = lastPlayer
+        occupy(position, from: lastPlayer)
         
         if hasWon(lastPlayer) {
             return lastPlayer == Player.x
@@ -30,6 +30,10 @@ class Game {
     
     private func isPositionAlreadyPlayed(_ position: Position) -> Bool {
         return occupiedPositions.keys.contains(position)
+    }
+
+    private func occupy(_ position: Position, from: Player) {
+        occupiedPositions[position] = from
     }
 
     private func occupiedPositionsBy(_ player: Player) -> Set<Position> {
