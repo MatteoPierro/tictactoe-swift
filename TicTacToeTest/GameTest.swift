@@ -16,4 +16,13 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(status, Status.positionAlreadyPlayed)
     }
+    
+    func testPlayersCanTakeANotPlayedPosition() {
+        let game = Game()
+        
+        game.play(Position.topLeft)
+        let status = game.play(Position.topMiddle)
+        
+        XCTAssertEqual(status, Status.positionTaken)
+    }
 }
