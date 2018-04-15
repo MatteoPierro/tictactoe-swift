@@ -1,15 +1,15 @@
 class Game {
     
-    private var occupatedPositions = Set<Position>()
+    private var occupatedPositions = [Position: Player]()
     private var currentPlayer: Player! = nil
     
     func play(_ position: Position) -> Status {
-        if occupatedPositions.contains(position) {
+        if occupatedPositions.keys.contains(position) {
             return Status.positionAlreadyPlayed
         }
         
         currentPlayer = nextPlayer()
-        occupatedPositions.insert(position)
+        occupatedPositions[position] = currentPlayer
         
         return isDraw()
             ? Status.draw
