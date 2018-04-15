@@ -7,5 +7,4 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(game.nextPlayer(), Player.X)
     }
-    
 }
