@@ -210,4 +210,31 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(state, Status.oWon)
     }
+
+    //  X' O'
+    //     X' O'
+    //        X'
+    func testXWinsTakingAllTheDiagonalStartingFromTopLeft() {
+        game.play(Position.topLeft)
+        game.play(Position.topMiddle)
+        game.play(Position.centerMiddle)
+        game.play(Position.centerRight)
+        let state = game.play(Position.bottomRight)
+
+        XCTAssertEqual(state, Status.xWon)
+    }
+
+    //  O' X'
+    //  X' O' X'
+    //        O'
+    func testOWinsTakingAllTheDiagonalStartingFromTopLeft() {
+        game.play(Position.centerLeft)
+        game.play(Position.topLeft)
+        game.play(Position.topMiddle)
+        game.play(Position.centerMiddle)
+        game.play(Position.centerRight)
+        let state = game.play(Position.bottomRight)
+
+        XCTAssertEqual(state, Status.oWon)
+    }
 }
