@@ -1,19 +1,17 @@
 class Game {
     
-    private var occupatedPositions = [Position: Player]()
+    private var occupiedPositions = [Position: Player]()
     private var currentPlayer: Player! = nil
     
     func play(_ position: Position) -> Status {
-        if occupatedPositions.keys.contains(position) {
+        if isPositionAlreadyPlayed(position) {
             return Status.positionAlreadyPlayed
         }
         
         currentPlayer = nextPlayer()
-        occupatedPositions[position] = currentPlayer
+        occupiedPositions[position] = currentPlayer
         
-        let winningSequence: Set = [Position.topLeft, Position.topMiddle, Position.topRight]
-        let positionsOccupatedByX = occupatedPositions.filter { $0.value == Player.x}.keys
-        if winningSequence.isSubset(of: positionsOccupatedByX) {
+        if hasWon(currentPlayer) {
             return Status.xWon
         }
 
@@ -28,7 +26,20 @@ class Game {
             : Player.x
     }
     
+    private func isPositionAlreadyPlayed(_ position: Position) -> Bool {
+        return occupiedPositions.keys.contains(position)
+    }
+
+    private func occupiedPositionsBy(_ player: Player) -> Set<Position> {
+        return Set(occupiedPositions.filter { $0.value == player}.keys)
+    }
+
+    private func hasWon(_ player: Player!) -> Bool {
+        let winningSequence: Set = [Position.topLeft, Position.topMiddle, Position.topRight]
+        return winningSequence.isSubset(of: occupiedPositionsBy(player!))
+    }
+
     private func isDraw() -> Bool {
-        return occupatedPositions.count == 9;
+        return occupiedPositions.count == 9;
     }
 }
