@@ -1,41 +1,35 @@
 class Game {
-    
+
     private var occupiedPositions = [Position: Player]()
-    private var lastPlayer: Player! = nil
-    private var status: Status = Status.started
-    
+    private var lastPlayer: Player?
+    private var status: Status = .started
+
     func play(_ position: Position) {
-        if isOver() {
+        if isOver {
             return
         }
 
         if isPositionAlreadyPlayed(position) {
-            status = Status.positionAlreadyPlayed
+            status = .positionAlreadyPlayed
             return
         }
-        
+
         lastPlayer = nextPlayer()
+        guard let lastPlayer = lastPlayer else { return }
         occupy(position, from: lastPlayer)
-        
-        if hasWon(lastPlayer) {
-            status = lastPlayer == Player.x
-                ? Status.xWon
-                : Status.oWon
 
+        if hasWon(lastPlayer) {
+            status = isLastPlayerX ? .xWon : .oWon
             return
         }
 
-        status = isDraw()
-            ? Status.draw
-            : Status.positionTaken
+        status = isDraw ? .draw : .positionTaken
     }
-    
+
     func nextPlayer() -> Player {
-        return lastPlayer == Player.x
-            ? Player.o
-            : Player.x
+        return isLastPlayerX ? .o : .x
     }
-    
+
     func currentStatus() -> Status {
         return status
     }
@@ -52,32 +46,36 @@ class Game {
         return Set(occupiedPositions.filter { $0.value == player}.keys)
     }
 
-    private func hasWon(_ player: Player!) -> Bool {
-        let winningSequences: Set<Set> = [
-            [Position.topLeft, Position.topMiddle, Position.topRight],
-            [Position.centerLeft, Position.centerMiddle, Position.centerRight],
-            [Position.bottomLeft, Position.bottomMiddle, Position.bottomRight],
-            [Position.topLeft, Position.centerLeft, Position.bottomLeft],
-            [Position.topMiddle, Position.centerMiddle, Position.bottomMiddle],
-            [Position.topRight, Position.centerRight, Position.bottomRight],
-            [Position.topLeft, Position.centerMiddle, Position.bottomRight],
-            [Position.topRight, Position.centerMiddle, Position.bottomLeft]
+    private func hasWon(_ player: Player) -> Bool {
+        let winningSequences: Set<Set<Position>> = [
+            [.topLeft, .topMiddle, .topRight],
+            [.centerLeft, .centerMiddle, .centerRight],
+            [.bottomLeft, .bottomMiddle, .bottomRight],
+            [.topLeft, .centerLeft, .bottomLeft],
+            [.topMiddle, .centerMiddle, .bottomMiddle],
+            [.topRight, .centerRight, .bottomRight],
+            [.topLeft, .centerMiddle, .bottomRight],
+            [.topRight, .centerMiddle, .bottomLeft]
         ]
-        
-        let occupiedPositions = occupiedPositionsBy(player!)
-        
-        return winningSequences.first(where: { isWinningSequence(occupiedPositions, winningSequence: $0) }) != nil
+
+        let occupiedPositions = occupiedPositionsBy(player)
+
+        return winningSequences.first { isWinningSequence(occupiedPositions, winningSequence: $0) } != nil
     }
 
     private func isWinningSequence(_ occupiedPositions: Set<Position>, winningSequence: Set<Position>) -> Bool {
         return winningSequence.isSubset(of: occupiedPositions)
     }
 
-    private func isDraw() -> Bool {
-        return occupiedPositions.count == 9;
+    private var isDraw: Bool {
+        return occupiedPositions.count == 9
     }
-    
-    private func isOver() -> Bool {
-        return [Status.draw, Status.xWon, Status.oWon].contains(status)
+
+    private var isOver: Bool {
+        return [.draw, .xWon, .oWon].contains(status)
+    }
+
+    private var isLastPlayerX: Bool {
+        return lastPlayer == .x
     }
 }
