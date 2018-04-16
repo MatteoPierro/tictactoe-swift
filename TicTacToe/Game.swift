@@ -1,7 +1,7 @@
 class Game {
 
     private var occupiedPositions = [Position: Player]()
-    private var lastPlayer: Player! = nil
+    private var lastPlayer: Player?
     private var status: Status = .started
 
     func play(_ position: Position) {
@@ -15,6 +15,7 @@ class Game {
         }
 
         lastPlayer = nextPlayer()
+        guard let lastPlayer = lastPlayer else { return }
         occupy(position, from: lastPlayer)
 
         if hasWon(lastPlayer) {
