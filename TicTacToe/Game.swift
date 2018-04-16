@@ -18,7 +18,7 @@ class Game {
         occupy(position, from: lastPlayer)
         
         if hasWon(lastPlayer) {
-            status = lastPlayer == Player.x
+            status = lastPlayer == .x
                 ? .xWon
                 : .oWon
 
@@ -31,9 +31,9 @@ class Game {
     }
     
     func nextPlayer() -> Player {
-        return lastPlayer == Player.x
-            ? Player.o
-            : Player.x
+        return lastPlayer == .x
+            ? .o
+            : .x
     }
     
     func currentStatus() -> Status {

@@ -9,7 +9,7 @@ class GameTest: XCTestCase {
     }
 
     func testXAlwaysGoesFirst() {
-        XCTAssertEqual(game.nextPlayer(), Player.x)
+        XCTAssertEqual(game.nextPlayer(), .x)
     }
     
     func testPlayersCannotPlayOnAPlayedPosition() {
@@ -29,7 +29,7 @@ class GameTest: XCTestCase {
     func testPlayersAlternatePlacingXandO() {
         game.play(.topLeft)
         
-        XCTAssertEqual(game.nextPlayer(), Player.o)
+        XCTAssertEqual(game.nextPlayer(), .o)
     }
     
     // X' O' X'
