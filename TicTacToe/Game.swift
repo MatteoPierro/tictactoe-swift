@@ -5,7 +5,7 @@ class Game {
     private var status: Status = .started
 
     func play(_ position: Position) {
-        if isOver() {
+        if isOver {
             return
         }
 
@@ -26,7 +26,7 @@ class Game {
             return
         }
 
-        status = isDraw()
+        status = isDraw
             ? .draw
             : .positionTaken
     }
@@ -74,11 +74,11 @@ class Game {
         return winningSequence.isSubset(of: occupiedPositions)
     }
 
-    private func isDraw() -> Bool {
+    private var isDraw: Bool {
         return occupiedPositions.count == 9
     }
 
-    private func isOver() -> Bool {
+    private var isOver: Bool {
         return [.draw, .xWon, .oWon].contains(status)
     }
 }
