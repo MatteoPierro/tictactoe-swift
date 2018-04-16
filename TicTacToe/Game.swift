@@ -14,7 +14,7 @@ class Game {
             return
         }
 
-        lastPlayer = nextPlayer()
+        lastPlayer = nextPlayer
         guard let lastPlayer = lastPlayer else { return }
         occupy(position, from: lastPlayer)
 
@@ -26,7 +26,7 @@ class Game {
         status = isDraw ? .draw : .positionTaken
     }
 
-    func nextPlayer() -> Player {
+    var nextPlayer: Player {
         return isLastPlayerX ? .o : .x
     }
 
