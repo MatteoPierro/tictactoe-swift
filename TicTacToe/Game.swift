@@ -2,16 +2,16 @@ class Game {
     
     private var occupiedPositions = [Position: Player]()
     private var lastPlayer: Player! = nil
-    private var status: Status! = nil
+    private var status: Status = Status.started
     
-    func play(_ position: Position) -> Status {
+    func play(_ position: Position) {
         if isOver() {
-            return status
+            return
         }
 
         if isPositionAlreadyPlayed(position) {
             status = Status.positionAlreadyPlayed
-            return status
+            return
         }
         
         lastPlayer = nextPlayer()
@@ -22,14 +22,12 @@ class Game {
                 ? Status.xWon
                 : Status.oWon
 
-            return status
+            return
         }
 
         status = isDraw()
             ? Status.draw
             : Status.positionTaken
-
-        return status
     }
     
     func nextPlayer() -> Player {
@@ -38,6 +36,10 @@ class Game {
             : Player.x
     }
     
+    func currentStatus() -> Status {
+        return status
+    }
+
     private func isPositionAlreadyPlayed(_ position: Position) -> Bool {
         return occupiedPositions.keys.contains(position)
     }
