@@ -2,7 +2,7 @@ class Game {
     
     private var occupiedPositions = [Position: Player]()
     private var lastPlayer: Player! = nil
-    private var status: Status = Status.started
+    private var status: Status = .started
     
     func play(_ position: Position) {
         if isOver() {
@@ -10,7 +10,7 @@ class Game {
         }
 
         if isPositionAlreadyPlayed(position) {
-            status = Status.positionAlreadyPlayed
+            status = .positionAlreadyPlayed
             return
         }
         
@@ -19,15 +19,15 @@ class Game {
         
         if hasWon(lastPlayer) {
             status = lastPlayer == Player.x
-                ? Status.xWon
-                : Status.oWon
+                ? .xWon
+                : .oWon
 
             return
         }
 
         status = isDraw()
-            ? Status.draw
-            : Status.positionTaken
+            ? .draw
+            : .positionTaken
     }
     
     func nextPlayer() -> Player {
@@ -53,15 +53,15 @@ class Game {
     }
 
     private func hasWon(_ player: Player!) -> Bool {
-        let winningSequences: Set<Set> = [
-            [Position.topLeft, Position.topMiddle, Position.topRight],
-            [Position.centerLeft, Position.centerMiddle, Position.centerRight],
-            [Position.bottomLeft, Position.bottomMiddle, Position.bottomRight],
-            [Position.topLeft, Position.centerLeft, Position.bottomLeft],
-            [Position.topMiddle, Position.centerMiddle, Position.bottomMiddle],
-            [Position.topRight, Position.centerRight, Position.bottomRight],
-            [Position.topLeft, Position.centerMiddle, Position.bottomRight],
-            [Position.topRight, Position.centerMiddle, Position.bottomLeft]
+        let winningSequences: Set<Set<Position>> = [
+            [.topLeft, .topMiddle, .topRight],
+            [.centerLeft, .centerMiddle, .centerRight],
+            [.bottomLeft, .bottomMiddle, .bottomRight],
+            [.topLeft, .centerLeft, .bottomLeft],
+            [.topMiddle, .centerMiddle, .bottomMiddle],
+            [.topRight, .centerRight, .bottomRight],
+            [.topLeft, .centerMiddle, .bottomRight],
+            [.topRight, .centerMiddle, .bottomLeft]
         ]
         
         let occupiedPositions = occupiedPositionsBy(player!)
@@ -78,6 +78,6 @@ class Game {
     }
     
     private func isOver() -> Bool {
-        return [Status.draw, Status.xWon, Status.oWon].contains(status)
+        return [.draw, .xWon, .oWon].contains(status)
     }
 }
