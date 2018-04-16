@@ -264,4 +264,15 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(state, Status.oWon)
     }
+    
+    func testNotPermitFurtherPlayAfterGameIsWon() {
+        game.play(Position.topRight)
+        game.play(Position.topMiddle)
+        game.play(Position.centerMiddle)
+        game.play(Position.centerRight)
+        game.play(Position.bottomLeft)
+        let state = game.play(Position.bottomMiddle)
+        
+        XCTAssertEqual(state, Status.xWon)
+    }
 }

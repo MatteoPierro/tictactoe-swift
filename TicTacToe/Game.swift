@@ -2,24 +2,34 @@ class Game {
     
     private var occupiedPositions = [Position: Player]()
     private var lastPlayer: Player! = nil
+    private var status: Status! = nil
     
     func play(_ position: Position) -> Status {
+        if isOver() {
+            return status
+        }
+
         if isPositionAlreadyPlayed(position) {
-            return Status.positionAlreadyPlayed
+            status = Status.positionAlreadyPlayed
+            return status
         }
         
         lastPlayer = nextPlayer()
         occupy(position, from: lastPlayer)
         
         if hasWon(lastPlayer) {
-            return lastPlayer == Player.x
+            status = lastPlayer == Player.x
                 ? Status.xWon
                 : Status.oWon
+
+            return status
         }
 
-        return isDraw()
+        status = isDraw()
             ? Status.draw
             : Status.positionTaken
+
+        return status
     }
     
     func nextPlayer() -> Player {
@@ -63,5 +73,9 @@ class Game {
 
     private func isDraw() -> Bool {
         return occupiedPositions.count == 9;
+    }
+    
+    private func isOver() -> Bool {
+        return [Status.draw, Status.xWon, Status.oWon].contains(status)
     }
 }
