@@ -66,7 +66,7 @@ class Game {
 
         let occupiedPositions = occupiedPositionsBy(player!)
 
-        return winningSequences.first(where: { isWinningSequence(occupiedPositions, winningSequence: $0) }) != nil
+        return winningSequences.first { isWinningSequence(occupiedPositions, winningSequence: $0) } != nil
     }
 
     private func isWinningSequence(_ occupiedPositions: Set<Position>, winningSequence: Set<Position>) -> Bool {
