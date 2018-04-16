@@ -23,9 +23,7 @@ class Game {
             return
         }
 
-        status = isDraw
-            ? .draw
-            : .positionTaken
+        status = isDraw ? .draw : .positionTaken
     }
 
     func nextPlayer() -> Player {
