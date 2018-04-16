@@ -91,10 +91,18 @@
 		73A9CF15208353320052E3D3 /* TicTacToeTest */ = {
 			isa = PBXGroup;
 			children = (
-				73A9CF18208353320052E3D3 /* Info.plist */,
 				73A9CF1C2083539E0052E3D3 /* GameTest.swift */,
+				EA7AAE3320849782001CD3E2 /* Supporting files */,
 			);
 			path = TicTacToeTest;
+			sourceTree = "<group>";
+		};
+		EA7AAE3320849782001CD3E2 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				73A9CF18208353320052E3D3 /* Info.plist */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,7 +365,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TicTacToeTest/Info.plist;
+				INFOPLIST_FILE = "TicTacToeTest/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -374,7 +382,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TicTacToeTest/Info.plist;
+				INFOPLIST_FILE = "TicTacToeTest/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
