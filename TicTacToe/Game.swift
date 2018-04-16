@@ -2,7 +2,7 @@ class Game {
 
     private var occupiedPositions = [Position: Player]()
     private var lastPlayer: Player?
-    private var status: Status = .started
+    private (set) var status: Status = .started
 
     func play(_ position: Position) {
         if isOver {
@@ -14,7 +14,7 @@ class Game {
             return
         }
 
-        lastPlayer = nextPlayer()
+        lastPlayer = nextPlayer
         guard let lastPlayer = lastPlayer else { return }
         occupy(position, from: lastPlayer)
 
@@ -26,12 +26,8 @@ class Game {
         status = isDraw ? .draw : .positionTaken
     }
 
-    func nextPlayer() -> Player {
+    var nextPlayer: Player {
         return isLastPlayerX ? .o : .x
-    }
-
-    func currentStatus() -> Status {
-        return status
     }
 
     private func isPositionAlreadyPlayed(_ position: Position) -> Bool {
