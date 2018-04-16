@@ -43,7 +43,7 @@ class Game {
     }
 
     private func hasWon(_ player: Player) -> Bool {
-        let winningSequences: Set<Set<Position>> = [
+        let winningPositions: Set<Set<Position>> = [
             [.topLeft, .topMiddle, .topRight],
             [.centerLeft, .centerMiddle, .centerRight],
             [.bottomLeft, .bottomMiddle, .bottomRight],
@@ -56,11 +56,11 @@ class Game {
 
         let occupiedPositions = occupiedPositionsBy(player)
 
-        return winningSequences.first { isWinningSequence(occupiedPositions, winningSequence: $0) } != nil
+        return winningPositions.first { isWinningPosition(occupiedPositions, winningPosition: $0) } != nil
     }
 
-    private func isWinningSequence(_ occupiedPositions: Set<Position>, winningSequence: Set<Position>) -> Bool {
-        return winningSequence.isSubset(of: occupiedPositions)
+    private func isWinningPosition(_ occupiedPositions: Set<Position>, winningPosition: Set<Position>) -> Bool {
+        return winningPosition.isSubset(of: occupiedPositions)
     }
 
     private var isDraw: Bool {
