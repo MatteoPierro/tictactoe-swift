@@ -1,9 +1,9 @@
 class Game {
-    
+
     private var occupiedPositions = [Position: Player]()
     private var lastPlayer: Player! = nil
     private var status: Status = .started
-    
+
     func play(_ position: Position) {
         if isOver() {
             return
@@ -13,10 +13,10 @@ class Game {
             status = .positionAlreadyPlayed
             return
         }
-        
+
         lastPlayer = nextPlayer()
         occupy(position, from: lastPlayer)
-        
+
         if hasWon(lastPlayer) {
             status = lastPlayer == .x
                 ? .xWon
@@ -29,13 +29,13 @@ class Game {
             ? .draw
             : .positionTaken
     }
-    
+
     func nextPlayer() -> Player {
         return lastPlayer == .x
             ? .o
             : .x
     }
-    
+
     func currentStatus() -> Status {
         return status
     }
@@ -63,9 +63,9 @@ class Game {
             [.topLeft, .centerMiddle, .bottomRight],
             [.topRight, .centerMiddle, .bottomLeft]
         ]
-        
+
         let occupiedPositions = occupiedPositionsBy(player!)
-        
+
         return winningSequences.first(where: { isWinningSequence(occupiedPositions, winningSequence: $0) }) != nil
     }
 
@@ -74,9 +74,9 @@ class Game {
     }
 
     private func isDraw() -> Bool {
-        return occupiedPositions.count == 9;
+        return occupiedPositions.count == 9
     }
-    
+
     private func isOver() -> Bool {
         return [.draw, .xWon, .oWon].contains(status)
     }

@@ -1,9 +1,9 @@
 import XCTest
 
 class GameTest: XCTestCase {
-    
+
     var game: Game!
-    
+
     override func setUp() {
         game = Game()
     }
@@ -11,27 +11,27 @@ class GameTest: XCTestCase {
     func testXAlwaysGoesFirst() {
         XCTAssertEqual(game.nextPlayer(), .x)
     }
-    
+
     func testPlayersCannotPlayOnAPlayedPosition() {
         game.play(.topLeft)
         game.play(.topLeft)
-        
+
         XCTAssertEqual(game.currentStatus(), .positionAlreadyPlayed)
     }
-    
+
     func testPlayersCanTakeANotPlayedPosition() {
         game.play(.topLeft)
         game.play(.topMiddle)
-        
+
         XCTAssertEqual(game.currentStatus(), .positionTaken)
     }
-    
+
     func testPlayersAlternatePlacingXandO() {
         game.play(.topLeft)
-        
+
         XCTAssertEqual(game.nextPlayer(), .o)
     }
-    
+
     // X' O' X'
     // X' O' O'
     // O' X' X'
@@ -45,10 +45,10 @@ class GameTest: XCTestCase {
         game.play(.bottomMiddle)
         game.play(.bottomLeft)
         game.play(.bottomRight)
-        
+
         XCTAssertEqual(game.currentStatus(), .draw)
     }
-    
+
     // X' X' X' ---> win
     // O'
     // O'
@@ -58,7 +58,7 @@ class GameTest: XCTestCase {
         game.play(.topMiddle)
         game.play(.bottomLeft)
         game.play(.topRight)
-        
+
         XCTAssertEqual(game.currentStatus(), .xWon)
     }
 
@@ -75,7 +75,7 @@ class GameTest: XCTestCase {
 
         XCTAssertEqual(game.currentStatus(), .oWon)
     }
-    
+
     // O'
     // X' X' X' ---> win
     // O'
@@ -85,10 +85,10 @@ class GameTest: XCTestCase {
         game.play(.centerMiddle)
         game.play(.bottomLeft)
         game.play(.centerRight)
-        
+
         XCTAssertEqual(game.currentStatus(), .xWon)
     }
-    
+
     // X'
     // O' O' O' ---> win
     // X' X'
@@ -99,10 +99,10 @@ class GameTest: XCTestCase {
         game.play(.centerMiddle)
         game.play(.bottomLeft)
         game.play(.centerRight)
-        
+
         XCTAssertEqual(game.currentStatus(), .oWon)
     }
-    
+
     // O'
     // O'
     // X' X' X' ---> win
@@ -112,10 +112,10 @@ class GameTest: XCTestCase {
         game.play(.bottomMiddle)
         game.play(.centerLeft)
         game.play(.bottomRight)
-        
+
         XCTAssertEqual(game.currentStatus(), .xWon)
     }
-    
+
     // X' X'
     // X'
     // O' O' O' ---> win
@@ -126,10 +126,10 @@ class GameTest: XCTestCase {
         game.play(.bottomMiddle)
         game.play(.centerLeft)
         game.play(.bottomRight)
-        
+
         XCTAssertEqual(game.currentStatus(), .oWon)
     }
-    
+
     // X'
     // X' O'
     // X' O'
@@ -139,10 +139,10 @@ class GameTest: XCTestCase {
         game.play(.centerLeft)
         game.play(.centerMiddle)
         game.play(.topLeft)
-        
+
         XCTAssertEqual(game.currentStatus(), .xWon)
     }
-    
+
     // O' X' X'
     // O'
     // O' X'
@@ -153,10 +153,10 @@ class GameTest: XCTestCase {
         game.play(.centerLeft)
         game.play(.topRight)
         game.play(.topLeft)
-        
+
         XCTAssertEqual(game.currentStatus(), .oWon)
     }
-    
+
     //    X'
     //    X' O'
     //    X' O'
@@ -166,10 +166,10 @@ class GameTest: XCTestCase {
         game.play(.centerMiddle)
         game.play(.centerRight)
         game.play(.topMiddle)
-        
+
         XCTAssertEqual(game.currentStatus(), .xWon)
     }
-    
+
     // X' O'
     //    O' X'
     //    O' X'
@@ -180,7 +180,7 @@ class GameTest: XCTestCase {
         game.play(.centerMiddle)
         game.play(.centerRight)
         game.play(.topMiddle)
-        
+
         XCTAssertEqual(game.currentStatus(), .oWon)
     }
 
@@ -207,7 +207,7 @@ class GameTest: XCTestCase {
         game.play(.centerRight)
         game.play(.topMiddle)
         game.play(.topRight)
-        
+
         XCTAssertEqual(game.currentStatus(), .oWon)
     }
 
@@ -237,7 +237,7 @@ class GameTest: XCTestCase {
 
         XCTAssertEqual(game.currentStatus(), .oWon)
     }
-    
+
     //     O' X'
     //     X' O'
     //  X'
@@ -247,10 +247,10 @@ class GameTest: XCTestCase {
         game.play(.centerMiddle)
         game.play(.centerRight)
         game.play(.bottomLeft)
-        
+
         XCTAssertEqual(game.currentStatus(), .xWon)
     }
-    
+
     //  X' X' O'
     //     O' X'
     //  O'
@@ -261,10 +261,10 @@ class GameTest: XCTestCase {
         game.play(.centerMiddle)
         game.play(.centerRight)
         game.play(.bottomLeft)
-        
+
         XCTAssertEqual(game.currentStatus(), .oWon)
     }
-    
+
     func testNotPermitFurtherPlayAfterGameIsWon() {
         game.play(.topRight)
         game.play(.topMiddle)
@@ -272,7 +272,7 @@ class GameTest: XCTestCase {
         game.play(.centerRight)
         game.play(.bottomLeft)
         game.play(.bottomMiddle)
-        
+
         XCTAssertEqual(game.currentStatus(), .xWon)
     }
 }
