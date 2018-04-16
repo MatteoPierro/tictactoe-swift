@@ -19,10 +19,7 @@ class Game {
         occupy(position, from: lastPlayer)
 
         if hasWon(lastPlayer) {
-            status = lastPlayer == .x
-                ? .xWon
-                : .oWon
-
+            status = isLastPlayerX ? .xWon : .oWon
             return
         }
 
@@ -32,9 +29,7 @@ class Game {
     }
 
     func nextPlayer() -> Player {
-        return lastPlayer == .x
-            ? .o
-            : .x
+        return isLastPlayerX ? .o : .x
     }
 
     func currentStatus() -> Status {
@@ -80,5 +75,9 @@ class Game {
 
     private var isOver: Bool {
         return [.draw, .xWon, .oWon].contains(status)
+    }
+
+    private var isLastPlayerX: Bool {
+        return lastPlayer == .x
     }
 }
