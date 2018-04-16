@@ -52,7 +52,7 @@ class Game {
         return Set(occupiedPositions.filter { $0.value == player}.keys)
     }
 
-    private func hasWon(_ player: Player!) -> Bool {
+    private func hasWon(_ player: Player) -> Bool {
         let winningSequences: Set<Set<Position>> = [
             [.topLeft, .topMiddle, .topRight],
             [.centerLeft, .centerMiddle, .centerRight],
@@ -64,7 +64,7 @@ class Game {
             [.topRight, .centerMiddle, .bottomLeft]
         ]
 
-        let occupiedPositions = occupiedPositionsBy(player!)
+        let occupiedPositions = occupiedPositionsBy(player)
 
         return winningSequences.first { isWinningSequence(occupiedPositions, winningSequence: $0) } != nil
     }
