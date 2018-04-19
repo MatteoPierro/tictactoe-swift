@@ -2,9 +2,10 @@ import XCTest
 
 class GameTest: XCTestCase {
 
-    var game: Game!
+    private var game: Game!
 
     override func setUp() {
+        super.setUp()
         game = Game()
     }
 
@@ -32,247 +33,193 @@ class GameTest: XCTestCase {
         XCTAssertEqual(game.nextPlayer, .o)
     }
 
-    // X' O' X'
-    // X' O' O'
-    // O' X' X'
+    /// X' O' X'
+    /// X' O' O'
+    /// O' X' X'
     func testTheGameIsADrawWhenAllNineSquaresAreFilledAndNeitherPlayerHasThreeInARow() {
-        game.play(.topLeft)
-        game.play(.topMiddle)
-        game.play(.topRight)
-        game.play(.centerMiddle)
-        game.play(.centerLeft)
-        game.play(.centerRight)
-        game.play(.bottomMiddle)
-        game.play(.bottomLeft)
-        game.play(.bottomRight)
+        game.play(x: [.topLeft, .topRight, .centerLeft, .bottomMiddle, .bottomRight],
+                  o: [.topMiddle, .centerMiddle, .centerRight, .bottomLeft])
 
         XCTAssertEqual(game.status, .draw)
     }
 
-    // X' X' X' ---> win
-    // O'
-    // O'
+    /// X' X' X' ---> win
+    /// O'
+    /// O'
     func testXWinsTakingAllTheTopRow() {
-        game.play(.topLeft)
-        game.play(.centerLeft)
-        game.play(.topMiddle)
-        game.play(.bottomLeft)
-        game.play(.topRight)
+        game.play(x: [.topLeft, .topMiddle, .topRight],
+                  o: [.centerLeft, .bottomLeft])
 
         XCTAssertEqual(game.status, .xWon)
     }
 
-    // O' O' O' ---> win
-    // X' X'
-    // X'
+    /// O' O' O' ---> win
+    /// X' X'
+    /// X'
     func testOWinsTakingAllTheTopRow() {
-        game.play(.bottomLeft)
-        game.play(.topLeft)
-        game.play(.centerLeft)
-        game.play(.topMiddle)
-        game.play(.centerMiddle)
-        game.play(.topRight)
+        game.play(x: [.bottomLeft, .centerLeft, .centerMiddle],
+                  o: [.topLeft, .topMiddle, .topRight])
 
         XCTAssertEqual(game.status, .oWon)
     }
 
-    // O'
-    // X' X' X' ---> win
-    // O'
+    /// O'
+    /// X' X' X' ---> win
+    /// O'
     func testXWinsTakingAllTheCenterRow() {
-        game.play(.centerLeft)
-        game.play(.topLeft)
-        game.play(.centerMiddle)
-        game.play(.bottomLeft)
-        game.play(.centerRight)
+        game.play(x: [.centerLeft, .centerMiddle, .centerRight],
+                  o: [.topLeft, .bottomLeft])
 
         XCTAssertEqual(game.status, .xWon)
     }
 
-    // X'
-    // O' O' O' ---> win
-    // X' X'
+    /// X'
+    /// O' O' O' ---> win
+    /// X' X'
     func testOWinsTakingAllTheCenterRow() {
-        game.play(.bottomMiddle)
-        game.play(.centerLeft)
-        game.play(.topLeft)
-        game.play(.centerMiddle)
-        game.play(.bottomLeft)
-        game.play(.centerRight)
+        game.play(x: [.bottomMiddle, .topLeft, .bottomLeft],
+                  o: [.centerLeft, .centerMiddle, .centerRight])
 
         XCTAssertEqual(game.status, .oWon)
     }
 
-    // O'
-    // O'
-    // X' X' X' ---> win
+    /// O'
+    /// O'
+    /// X' X' X' ---> win
     func testXWinsTakingAllTheBottomRow() {
-        game.play(.bottomLeft)
-        game.play(.topLeft)
-        game.play(.bottomMiddle)
-        game.play(.centerLeft)
-        game.play(.bottomRight)
+        game.play(x: [.bottomLeft, .bottomMiddle, .bottomRight],
+                  o: [.topLeft, .centerLeft])
 
         XCTAssertEqual(game.status, .xWon)
     }
 
-    // X' X'
-    // X'
-    // O' O' O' ---> win
+    /// X' X'
+    /// X'
+    /// O' O' O' ---> win
     func testOWinsTakingAllTheBottomRow() {
-        game.play(.topMiddle)
-        game.play(.bottomLeft)
-        game.play(.topLeft)
-        game.play(.bottomMiddle)
-        game.play(.centerLeft)
-        game.play(.bottomRight)
+        game.play(x: [.topMiddle, .topLeft, .centerLeft],
+                  o: [.bottomLeft, .bottomMiddle, .bottomRight])
 
         XCTAssertEqual(game.status, .oWon)
     }
 
-    // X'
-    // X' O'
-    // X' O'
+    /// X'
+    /// X' O'
+    /// X' O'
     func testXWinsTakingAllTheLeftColumn() {
-        game.play(.bottomLeft)
-        game.play(.bottomMiddle)
-        game.play(.centerLeft)
-        game.play(.centerMiddle)
-        game.play(.topLeft)
+        game.play(x: [.bottomLeft, .centerLeft, .topLeft],
+                  o: [.bottomMiddle, .centerMiddle])
 
         XCTAssertEqual(game.status, .xWon)
     }
 
-    // O' X' X'
-    // O'
-    // O' X'
+    /// O' X' X'
+    /// O'
+    /// O' X'
     func testOWinsTakingAllTheLeftColumn() {
-        game.play(.topMiddle)
-        game.play(.bottomLeft)
-        game.play(.bottomMiddle)
-        game.play(.centerLeft)
-        game.play(.topRight)
-        game.play(.topLeft)
+        game.play(x: [.topMiddle, .bottomMiddle, .topRight],
+                  o: [.bottomLeft, .centerLeft, .topLeft])
 
         XCTAssertEqual(game.status, .oWon)
     }
 
-    //    X'
-    //    X' O'
-    //    X' O'
+    ///    X'
+    ///    X' O'
+    ///    X' O'
     func testXWinsTakingAllTheMiddleColumn() {
-        game.play(.bottomMiddle)
-        game.play(.bottomRight)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.topMiddle)
+        game.play(x: [.bottomMiddle, .centerMiddle, .topMiddle],
+                  o: [.bottomRight, .centerRight])
 
         XCTAssertEqual(game.status, .xWon)
     }
 
-    // X' O'
-    //    O' X'
-    //    O' X'
+    /// X' O'
+    ///    O' X'
+    ///    O' X'
     func testOWinsTakingAllTheMiddleColumn() {
-        game.play(.topLeft)
-        game.play(.bottomMiddle)
-        game.play(.bottomRight)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.topMiddle)
+        game.play(x: [.topLeft, .bottomRight, .centerRight],
+                  o: [.bottomMiddle, .centerMiddle, .topMiddle])
 
         XCTAssertEqual(game.status, .oWon)
     }
 
-    //    O' X'
-    //    O' X'
-    //       X'
+    ///    O' X'
+    ///    O' X'
+    ///       X'
     func testXWinsTakingAllTheRightColumn() {
-        game.play(.bottomRight)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.topMiddle)
-        game.play(.topRight)
+        game.play(x: [.bottomRight, .centerRight, .topRight],
+                  o: [.centerMiddle, .topMiddle])
 
         XCTAssertEqual(game.status, .xWon)
     }
 
-    // X' X' O'
-    //    X' O'
-    //       O'
+    /// X' X' O'
+    ///    X' O'
+    ///       O'
     func testOWinsTakingAllTheRightColumn() {
-        game.play(.topLeft)
-        game.play(.bottomRight)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.topMiddle)
-        game.play(.topRight)
+        game.play(x: [.topLeft, .centerMiddle, .topMiddle],
+                  o: [.bottomRight, .centerRight, .topRight])
 
         XCTAssertEqual(game.status, .oWon)
     }
 
-    //  X' O'
-    //     X' O'
-    //        X'
+    ///  X' O'
+    ///     X' O'
+    ///        X'
     func testXWinsTakingAllTheDiagonalStartingFromTopLeft() {
-        game.play(.topLeft)
-        game.play(.topMiddle)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.bottomRight)
+        game.play(x: [.topLeft, .centerMiddle, .bottomRight],
+                  o: [.topMiddle, .centerRight])
 
         XCTAssertEqual(game.status, .xWon)
     }
 
-    //  O' X'
-    //  X' O' X'
-    //        O'
+    ///  O' X'
+    ///  X' O' X'
+    ///        O'
     func testOWinsTakingAllTheDiagonalStartingFromTopLeft() {
-        game.play(.centerLeft)
-        game.play(.topLeft)
-        game.play(.topMiddle)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.bottomRight)
+        game.play(x: [.centerLeft, .topMiddle, .centerRight],
+                  o: [.topLeft, .centerMiddle, .bottomRight])
 
         XCTAssertEqual(game.status, .oWon)
     }
 
-    //     O' X'
-    //     X' O'
-    //  X'
+    ///     O' X'
+    ///     X' O'
+    ///  X'
     func testXWinsTakingAllTheDiagonalStartingFromTopRight() {
-        game.play(.topRight)
-        game.play(.topMiddle)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.bottomLeft)
+        game.play(x: [.topRight, .centerMiddle, .bottomLeft],
+                  o: [.topMiddle, .centerRight])
 
         XCTAssertEqual(game.status, .xWon)
     }
 
-    //  X' X' O'
-    //     O' X'
-    //  O'
+    ///  X' X' O'
+    ///     O' X'
+    ///  O'
     func testOWinsTakingAllTheDiagonalStartingFromTopRight() {
-        game.play(.topLeft)
-        game.play(.topRight)
-        game.play(.topMiddle)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.bottomLeft)
+        game.play(x: [.topLeft, .topMiddle, .centerRight],
+                  o: [.topRight, .centerMiddle, .bottomLeft])
 
         XCTAssertEqual(game.status, .oWon)
     }
 
     func testNotPermitFurtherPlayAfterGameIsWon() {
-        game.play(.topRight)
-        game.play(.topMiddle)
-        game.play(.centerMiddle)
-        game.play(.centerRight)
-        game.play(.bottomLeft)
-        game.play(.bottomMiddle)
+        game.play(x: [.topRight, .centerMiddle, .bottomLeft],
+                  o: [.topMiddle, .centerRight, .bottomMiddle])
 
         XCTAssertEqual(game.status, .xWon)
+    }
+}
+
+extension Game {
+    func play(x: [Position], o: [Position]) {
+        var x = x
+        var o = o
+        var xPlays = true
+        while !x.isEmpty || !o.isEmpty {
+            let position = xPlays ? x.removeFirst() : o.removeFirst()
+            play(position)
+            xPlays = !xPlays
+        }
     }
 }
