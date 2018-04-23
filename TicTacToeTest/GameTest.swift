@@ -213,13 +213,12 @@ class GameTest: XCTestCase {
 
 extension Game {
     func play(x: [Position], o: [Position]) {
-        var x = x
-        var o = o
-        var xPlays = true
-        while !x.isEmpty || !o.isEmpty {
-            let position = xPlays ? x.removeFirst() : o.removeFirst()
-            play(position)
-            xPlays = !xPlays
+        zip(x, o)
+            .flatMap { [$0.0, $0.1] }
+            .forEach { play($0) }
+        
+        if x.count != o.count {
+            play(x.last!)
         }
     }
 }
